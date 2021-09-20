@@ -26,7 +26,7 @@ const TodoItem = ({ title, description }) => {
                 <Text
                     style={styles.description}
                     numberOfLines={3}
-                    ellipsizeMode='tail'
+                    ellipsizeMode='tsail'
                 >
                     {description}
                 </Text>
