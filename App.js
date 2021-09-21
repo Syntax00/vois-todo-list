@@ -3,16 +3,22 @@ import {
   SafeAreaView,
   View,
 } from 'react-native';
+import { Provider } from 'react-redux';
+
 import TodoList from './components/TodoList/TodoList';
+
+import store from './store/store';
 
 const App = () => {
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#eee' }}>
-      <View>
-        <TodoList />
-      </View>
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#eee' }}>
+        <View>
+          <TodoList />
+        </View>
+      </SafeAreaView>
+    </Provider>
   );
 };
 

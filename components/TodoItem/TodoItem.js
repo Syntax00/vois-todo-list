@@ -16,8 +16,8 @@ const TodoItem = ({ title, description, index }) => {
     React.useEffect(() => {
         Animated.timing(animated, {
             toValue: 1,
-            duration: 600,
-            delay: (index + 1) * 300,
+            duration: 300,
+            delay: (index + 1) * 150,
             useNativeDriver: true
         }).start();
     }, [animated])

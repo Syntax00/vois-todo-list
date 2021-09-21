@@ -1,80 +1,22 @@
 import React from 'react';
-import { View, FlatList } from 'react-native'
+import { View, FlatList, TouchableOpacity, Text } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux';
 
 import TodoItem from '../TodoItem/TodoItem';
 import TodoListHeader from '../TodoListHeader/TodoListHeader';
 
-const DATA = [
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        title: 'Finalize request details route',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        title: 'Implement request tracking functionality',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '58694a0f-3da1-471f-bds6-145571e29d72',
-        title: 'Implement branching functionality',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: 'bd7acbea-c1b1-46c2-aea5-3ad53abb28ba',
-        title: 'Handle states icons',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '3ac68afc-c605-48d3-a4v8-fbd91aa97f63',
-        title: 'Study for MSc in Blockchain',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        title: 'Study for TOEFL',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '1',
-        title: 'Finalize request details route',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '2',
-        title: 'Implement request tracking functionality',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '3',
-        title: 'Implement branching functionality',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '4',
-        title: 'Handle states icons',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '5',
-        title: 'Study for MSc in Blockchain',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-    {
-        id: '6',
-        title: 'Study for TOEFL',
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    },
-];
-
+import { addTodoTask } from '../../store/actions/todo';
 
 const TodoList = () => {
+    const { todoList } = useSelector(state => state);
+    const dispatch = useDispatch();
+
     const indexToSnapScrollTo = 2;
     const listRef = React.useRef(null);
 
     const handleSnapToItemIndex = React.useCallback((event) => {
         // Don't continue processing if there's still no third item
-        if (!DATA[indexToSnapScrollTo]) return;
+        if (!todoList[indexToSnapScrollTo]) return;
 
         const {
             nativeEvent: {
@@ -88,9 +30,8 @@ const TodoList = () => {
         // TodoListHeader Height + Vertical Margins of TodoItem
         const extraPaddingAndHeaderHeightAvg = 40 + (indexToSnapScrollTo * 20);
 
-        // TODO: Listen to DATA changes in Redux & deps array
         // Evaluate every item average height in the list in order to use to determine the distance before snapping happens
-        const singleItemHeightAvgHeight = contentHeight / DATA.length;
+        const singleItemHeightAvgHeight = contentHeight / todoList.length;
 
         // Snapping happens when scroll passes the whole heights of items BEFORE the desired index's item
         const distanceOffsetBeforeSnapping = indexToSnapScrollTo * singleItemHeightAvgHeight + extraPaddingAndHeaderHeightAvg;
@@ -99,7 +40,7 @@ const TodoList = () => {
         if (y >= distanceOffsetBeforeSnapping) {
             listRef.current.scrollToIndex({ index: indexToSnapScrollTo, animated: true });
         }
-    }, [])
+    }, [todoList])
 
     return (
         <View>
@@ -107,7 +48,7 @@ const TodoList = () => {
                 ref={listRef}
                 onMomentumScrollEnd={handleSnapToItemIndex}
                 ListHeaderComponent={<TodoListHeader />}
-                data={DATA}
+                data={todoList}
                 renderItem={({ item, index }) => (
                     <TodoItem
                         title={item.title}
