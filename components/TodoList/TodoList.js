@@ -93,9 +93,10 @@ const TodoList = () => {
         const singleItemHeightAvgHeight = contentHeight / DATA.length;
 
         // Snapping happens when scroll passes the whole heights of items BEFORE the desired index's item
-        const distanceOffsetBeforeAutoScroll = indexToSnapScrollTo * singleItemHeightAvgHeight + extraPaddingAndHeaderHeightAvg;
+        const distanceOffsetBeforeSnapping = indexToSnapScrollTo * singleItemHeightAvgHeight + extraPaddingAndHeaderHeightAvg;
 
-        if (y >= distanceOffsetBeforeAutoScroll) {
+        // Snap the desired item to the top of the screen if it was reached
+        if (y >= distanceOffsetBeforeSnapping) {
             listRef.current.scrollToIndex({ index: indexToSnapScrollTo, animated: true });
         }
     }, [])
