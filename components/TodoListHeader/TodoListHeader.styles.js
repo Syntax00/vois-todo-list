@@ -11,16 +11,17 @@ export default StyleSheet.create({
     },
     addTodoBtn: {
         backgroundColor: APP_COLORS.appWhite,
-        paddingVertical: 6,
-        paddingHorizontal: 14,
+        paddingVertical: 7,
+        paddingHorizontal: 16,
         borderRadius: 100
     },
     addTodoBtnTxt: {
         color: APP_COLORS.vodafoneGrey,
-        fontWeight: '500'
+        fontWeight: '500',
+        fontSize: 15
     },
     headerText: {
-        fontSize: 28,
+        fontSize: 33,
         color: APP_COLORS.vodafoneGrey
     },
     logoHighlight: {

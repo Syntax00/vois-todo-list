@@ -7,7 +7,7 @@ const TodoListHeader = ({ openAddTodoModal = _ => _ }) => (
     <View style={styles.container}>
         <Text style={styles.headerText}>
             <Text style={styles.logoHighlight}>_VOIS </Text>
-            Todo List
+            Todo
         </Text>
 
 

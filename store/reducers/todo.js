@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_TODO:
             return {
-                ...state, todoList: state.todoList.concat(action.payload),
+                ...state, todoList: [action.payload].concat(state.todoList),
             };
         case REMOVE_TODO:
             return {
