@@ -6,7 +6,7 @@ import styles from './TodoListHeader.styles'
 const TodoListHeader = () => (
     <View style={styles.container}>
         <Text style={styles.headerText}>
-            <Text style={styles.logoHighlight}>VOIS </Text>
+            <Text style={styles.logoHighlight}>_VOIS </Text>
             Todo List
         </Text>
     </View>

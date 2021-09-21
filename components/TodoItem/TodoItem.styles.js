@@ -7,9 +7,9 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: APP_COLORS.appWhite,
         marginVertical: 10,
-        padding: 20,
+        padding: 24,
         borderRadius: 20,
-        paddingLeft: 0
+        paddingLeft: 0,
     },
     itemLogo: {
         flexBasis: '23%',

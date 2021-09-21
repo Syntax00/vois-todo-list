@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
+
 import TodoItem from '../TodoItem/TodoItem';
 import TodoListHeader from '../TodoListHeader/TodoListHeader';
-import styles from './TodoList.styles';
+
 const DATA = [
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -34,19 +35,53 @@ const DATA = [
         title: 'Study for TOEFL',
         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
+    {
+        id: '1',
+        title: 'Finalize request details route',
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+        id: '2',
+        title: 'Implement request tracking functionality',
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+        id: '3',
+        title: 'Implement branching functionality',
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+        id: '4',
+        title: 'Handle states icons',
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+        id: '5',
+        title: 'Study for MSc in Blockchain',
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+        id: '6',
+        title: 'Study for TOEFL',
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
 ];
 
 
 const TodoList = () => {
-
     return (
         <View>
             <FlatList
                 ListHeaderComponent={<TodoListHeader />}
                 data={DATA}
-                renderItem={({ item }) => (
-                    <TodoItem title={item.title} description={item.description} />
-                )}
+                renderItem={({ item, index }) => (
+                    <TodoItem
+                        title={item.title}
+                        description={item.description}
+                        index={index}
+                    />
+                )
+                }
                 keyExtractor={item => item.id}
                 contentContainerStyle={{ padding: 30 }}
             />

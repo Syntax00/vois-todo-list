@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Animated } from 'react-native';
 
 import styles from './TodoItem.styles';
 
@@ -10,9 +10,28 @@ const getTitleAbbrev = (title = "") => {
     return _title.length > 1 ? `${_title[0][0]}${_title[1][0]}` : _title[0][0];
 }
 
-const TodoItem = ({ title, description }) => {
+const TodoItem = ({ title, description, index }) => {
+    const [animated] = React.useState(new Animated.Value(0));
+
+    React.useEffect(() => {
+        Animated.timing(animated, {
+            toValue: 1,
+            duration: 600,
+            delay: (index + 1) * 300,
+            useNativeDriver: true
+        }).start();
+    }, [animated])
+
     return (
-        <TouchableOpacity style={styles.item}>
+        <Animated.View style={[styles.item, {
+            opacity: animated,
+            transform: [{
+                translateX: animated.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [-100, 1]
+                })
+            }]
+        }]}>
             <View style={styles.itemLogo}>
                 <View style={styles.itemLogoContent}>
                     <Text style={styles.itemLogoText}>
@@ -31,7 +50,7 @@ const TodoItem = ({ title, description }) => {
                     {description}
                 </Text>
             </View>
-        </TouchableOpacity>
+        </Animated.View >
     )
 };
 
