@@ -72,7 +72,7 @@ const TodoItem = ({ data = {}, index, editAction = _ => _ }) => {
                     <Text style={styles.title}>{title}</Text>
                     <Text
                         style={styles.description}
-                        numberOfLines={3}
+                        numberOfLines={2}
                         ellipsizeMode='tail'
                     >
                         {description}
