@@ -49,5 +49,15 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: APP_COLORS.vodafoneRed,
         borderRadius: 30
+    },
+    emptyMessage: {
+        height: 300,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    emptyMessageText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#666'
     }
 });

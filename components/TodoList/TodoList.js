@@ -78,6 +78,11 @@ const TodoList = () => {
                         editAction={editAction}
                     />
                 )}
+                ListEmptyComponent={(
+                    <View style={styles.emptyMessage}>
+                        <Text style={styles.emptyMessageText}>You have not added any Todo items yet</Text>
+                    </View>
+                )}
                 keyExtractor={item => item.id}
                 contentContainerStyle={{ padding: 30 }}
             />
