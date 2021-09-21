@@ -1,15 +1,22 @@
 import { StyleSheet } from 'react-native';
+
 import { APP_COLORS } from '../../utils/common';
 
 export default StyleSheet.create({
     item: {
-        flexDirection: 'row',
-        alignItems: 'center',
         backgroundColor: APP_COLORS.appWhite,
         marginVertical: 10,
-        padding: 24,
         borderRadius: 20,
         paddingLeft: 0,
+        paddingBottom: 0,
+        overflow: 'hidden'
+    },
+    itemContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 24,
+        paddingBottom: 0,
+        paddingLeft: 0
     },
     itemLogo: {
         flexBasis: '23%',
@@ -43,5 +50,14 @@ export default StyleSheet.create({
     },
     description: {
         color: APP_COLORS.vodafoneGrey
+    },
+    controllersContainer: {
+        flexDirection: 'row',
+        marginTop: 20,
+        paddingHorizontal: 10,
+        paddingVertical: 17,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        backgroundColor: '#f7f7f7'
     }
 })
