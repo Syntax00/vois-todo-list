@@ -4,7 +4,7 @@ import { APP_COLORS } from '../../utils/common';
 
 export default StyleSheet.create({
     container: {
-        marginBottom: 16
+        marginBottom: 16,
     },
     headerText: {
         fontSize: 35,
